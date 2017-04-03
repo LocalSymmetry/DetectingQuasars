@@ -1,2 +1,2 @@
 # DetectingQuasars
-A project to train convolutional neural networks to detect quasars using images from the Sloan Digital Sky Survey
+A project to train machine learning algorithms to detect quasars using images from the Sloan Digital Sky Survey. Currently the project is incomplete.
