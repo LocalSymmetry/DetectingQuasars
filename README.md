@@ -16,5 +16,5 @@ A project to train machine learning algorithms to detect quasars using images fr
 
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/test_data.csv">test_data.csv</a> - The training images randomly chosen in the Model Training notebook. Contains a dataframe of 21164 image filenames with quasar classification
 
-<a href="https://www.dropbox.com/sh/abig8qytnqrnsth/AAAUjNOwqA0M1S2EBzc7DURfa?dl=0">Images and Inception Model Checkpoint</a> - Externally hosted on <a href="https://www.dropbox.com/">Dropbox</a> due to their size. Contains the images from the Data Collection notebook and the parameters for the trained Inception ConvNet.
+<a href="https://www.dropbox.com/sh/abig8qytnqrnsth/AAAUjNOwqA0M1S2EBzc7DURfa?dl=0">Images and Inception Model Checkpoint</a> - Externally hosted on <a href="https://www.dropbox.com/">Dropbox</a> due to size. Contains the images from the Data Collection notebook and the parameters for the trained Inception ConvNet.
 
