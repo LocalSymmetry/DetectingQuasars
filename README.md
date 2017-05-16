@@ -6,9 +6,9 @@ A project to train machine learning algorithms to detect quasars using images fr
 
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/Model%20Training.ipynb">Model Training.ipynb</a> - Training of a Random Forest, Simple Convolutional Neural Network, and an Inception Neural Network classifier to detect quasars.
 
-<a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/NonQuasarsData.csv">NonQuasarsData.csv</a> - 94670 randomly chosen non-quasar celestial objects in the range of the Sloan Digital Sky Survey. As constructed from the Data Collection notebook. 
+<a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/NonQuasarsData.csv">NonQuasarsData.csv</a> - 94670 randomly chosen non-quasar celestial objects in the range of the Sloan Digital Sky Survey. Constructed from the Data Collection notebook. 
 
-<a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/QuasarCandidatesData.csv">QuasarCandidatesData.csv</a> - 5418 quasar candidate objects in the range of the Sloan Digital Sky Survey. As constructed from the Data Collection notebook. 
+<a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/QuasarCandidatesData.csv">QuasarCandidatesData.csv</a> - 5418 quasar candidate objects in the range of the Sloan Digital Sky Survey. Constructed from the Data Collection notebook. 
 
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/train_data.csv">train_data.csv</a> - The training images randomly chosen in the Model Training notebook. Contains a dataframe of 98763 image filenames with quasar classification. 
 
