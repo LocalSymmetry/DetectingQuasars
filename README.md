@@ -1,6 +1,8 @@
 # DetectingQuasars
 A project to train machine learning algorithms to detect quasars using images from the <a href="http://www.sdss.org/">Sloan Digital Sky Survey</a>. This project was created for The Society of Physics Students at Northeastern State University and the Y0 Physics Seminar.
 
+A description of the project can be found <a href="https://www.dplessas.com/new-blog/2017/5/17/catching-quasars-with-neural-nets">here</a>.
+
 ## Files
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/Data%20Collection.ipynb">Data Collection.ipynb</a> - Gathering images from the Sloan Digital Sky Survey using <a href="http://simbad.u-strasbg.fr/simbad/">SIMBAD Astronomical Database</a> and the <a href="http://astrostatistics.psu.edu/datasets/SDSS_quasar.html">Penn State Center for Astrostatistics</a>.
 
