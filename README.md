@@ -7,6 +7,7 @@ A project to train machine learning algorithms to detect quasars using images fr
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/Model%20Training.ipynb">Model Training.ipynb</a> - Training of a Random Forest, Simple Convolutional Neural Network, and an Inception Neural Network classifier to detect quasars.
 
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/QuasarClassifier.py">QuasarClassifier.py</a> - A functional version of the quasar classifier. Requires the Inception Model Checkpoint files.
+
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/QuasarCandidatePredictions.ipynb">QuasarCandidatePredictions.ipynb</a> - Using the trained classification model to predict if quasar candidates are quasars.
 
 <a href="https://github.com/LocalSymmetry/DetectingQuasars/blob/master/NonQuasarsData.csv">NonQuasarsData.csv</a> - 94670 randomly chosen non-quasar celestial objects in the range of the Sloan Digital Sky Survey. Constructed from the Data Collection notebook. 
