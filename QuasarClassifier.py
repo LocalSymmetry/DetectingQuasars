@@ -10,8 +10,10 @@ import numpy as np
 import pandas as pd
 from scipy import ndimage
 
+
 def ImportImages(ImageFilenames, image_width, image_height):
-    '''
+    """Covert image file names to a NumPy array.
+    
     Convert a numpy array of file names into a numpy array of images of the center
     30 pixels by 30 pixels preserving the order of the list of filenames given.
     The numpy array with have dimensions (number_of_images, 30, 30, 3) with 
@@ -29,7 +31,7 @@ def ImportImages(ImageFilenames, image_width, image_height):
     image_height : integer        
     The number of pixels in the images' height.
         
-    '''
+    """
     print('Loading Images...')
     image_array = np.ndarray(shape=(len(ImageFilenames), 30, 30, 3), dtype=np.float32)
     image_num = 0
@@ -48,6 +50,7 @@ def ImportImages(ImageFilenames, image_width, image_height):
             print('Could not read:', image, ':', e, ' , skipping.')
             image_num = image_num + 1
     return image_array
+
 
 def QuasarClassifier(ImageFilenames, image_width, image_height):
     """Quasar Classifier
@@ -86,14 +89,9 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
             raise Exception('Invalid image_height. Images must be at least 30 pixels by 30 pixels.')
         if image_width < 30:
             raise Exception('Invalid image_height. Images must be at least 30 pixels by 30 pixels.')
-
         input_images = ImportImages(ImageFilenames, image_width, image_height)
         
-        
-        ######
         # Model Construction
-        #####
-    
         # Parameters for the Inception ConvNet.
         step_size = 2500
         remaining_size = input_images.shape[0] % step_size
@@ -124,7 +122,6 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
         
         # Construction of the ConvNet Architecture
         with tunedinceptiongraph.as_default():
-                
             # Input batch placeholders
             input_batch_normal = tf.placeholder(tf.float32, shape=(step_size, image_size, image_size, num_channels))
             input_batch_small = tf.placeholder(tf.float32, shape=(remaining_size, image_size, image_size, num_channels))
@@ -136,8 +133,7 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
                 layer1_weights = tf.Variable(tf.truncated_normal(
                         [patch_size, patch_size, num_channels, depth], stddev=0.1), 
                                                 name='layer1_weights')
-                variable_summaries(layer1_weights)
-                    
+                variable_summaries(layer1_weights)   
                 # Inception Module Variables
                 # The 1x1 convolution that feeds into the 3x3 convolution.
                 conv_1_1x1_weights = tf.Variable(tf.truncated_normal(
@@ -163,20 +159,18 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
                 conv_5x5_weights = tf.Variable(tf.truncated_normal(
                         [5, 5, reduce_depth, inception_output_depth], stddev=0.1), name='conv_5x5_weights') 
                 variable_summaries(conv_5x5_weights)
-            
                 # Fully Connected Layer Variables
                 fullconn_weights = tf.Variable(tf.truncated_normal(
                     [(image_size // 2) * (image_size // 2) * inception_output_depth * 4, num_hidden], stddev=0.1),
-                        name='fullconn_weights')
+                    name='fullconn_weights')
                 variable_summaries(fullconn_weights)
                 outlayer_weights = tf.Variable(tf.truncated_normal([num_hidden, num_classes], stddev=0.1),
-                                                name='outlayer_weights')
+                                               name='outlayer_weights')
                 variable_summaries(outlayer_weights)
                 
             with tf.name_scope('biases'):
                 layer1_biases = tf.Variable(tf.zeros([depth]), name='layer1_biases')
-                variable_summaries(layer1_biases)
-                
+                variable_summaries(layer1_biases) 
                 # Inception Module Variables
                 # The 1x1 convolution that feeds into the 3x3 convolution.
                 conv_1_1x1_biases = tf.Variable(tf.truncated_normal(
@@ -202,7 +196,6 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
                 conv_5x5_biases = tf.Variable(tf.truncated_normal(
                         [inception_output_depth], stddev=0.1), name='conv_5x5_biases')
                 variable_summaries(conv_5x5_biases)
-            
                 # Fully Connected Layer Variables
                 fullconn_biases = tf.Variable(tf.constant(1.0, shape=[num_hidden]), name='fullconn_biases')
                 variable_summaries(fullconn_biases)
@@ -214,6 +207,7 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
               
             # The Convolutional Network Architecture.
             def inceptionconvnet(data):
+                
                 # First convolutional layer
                 with tf.name_scope('Conv1'):
                     conv1 = tf.nn.conv2d(data, layer1_weights, [1, 2, 2, 1], padding='SAME', name='conv1')
@@ -266,7 +260,8 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
                     
                 with tf.name_scope('FullConn'):
                     # Flatten the convolutions to a 2D tensor for the fully connected layer.
-                    reshape = tf.reshape(concat_layer, [-1, (image_size // 2) * (image_size // 2) * inception_output_depth * 4], name='Reshape')
+                    reshape = tf.reshape(
+                        concat_layer, [-1, (image_size // 2) * (image_size // 2) * inception_output_depth * 4], name='Reshape')
                     # Apply a hidden layer of a fully connected neural network.
                     preactivation3 = tf.matmul(reshape, fullconn_weights, name='preactiviation3')
                     # Activation on the hidden fully conected layer.
@@ -274,15 +269,14 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
                     tf.summary.histogram('activation_FullConn', hidden3)    
                     # Output layer
                     output = tf.matmul(hidden3, outlayer_weights) + outlayer_biases
-                    tf.summary.histogram('activation_output', output)
-                        
-                return output
+                    tf.summary.histogram('activation_output', output)    
                     
+                return output  
+            
             # Output for batch data
             normal_prediction = tf.nn.softmax(inceptionconvnet(input_batch_normal))
             small_prediction = tf.nn.softmax(inceptionconvnet(input_batch_small)) # for the last batch of images
- 
-
+            
         # Due to memory issues, we will run our images through the Inception ConvNet in batches
         input_batch = []
         for i in range((input_images.shape[0] // step_size)+1):
@@ -308,7 +302,3 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
                  
     except IOError as e:
                 print(e)                                   
-
-
-
-            
