@@ -7,6 +7,7 @@ To deploy the model, download <a href="https://github.com/LocalSymmetry/Detectin
 
 ## How to use:
 Given a list of images with the same dimensions (at least 30 pixels by 30 pixels), use the QuasarClassifier function to classify if they are of quasars.
+
   QuasarClassifier(ImageFilenames, image_width, image_height)
   
 ### Parameters:
