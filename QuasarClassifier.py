@@ -12,9 +12,9 @@ from scipy import ndimage
 
 
 def ImportImages(ImageFilenames, image_width, image_height):
-    """Covert image file names to a NumPy array.
+    """Covert image filenames to a NumPy array.
 
-    Convert a numpy array of file names into a numpy array of images of the center
+    Convert a numpy array of filenames into a numpy array of images of the center
     30 pixels by 30 pixels preserving the order of the list of filenames given.
     The numpy array with have dimensions (number_of_images, 30, 30, 3) with 
     the three image channels of Red, Green, and Blue.
@@ -26,11 +26,10 @@ def ImportImages(ImageFilenames, image_width, image_height):
         directory of the python file using this classifier.
 
     image_width : integer
-    The number of pixels in the images' width.
+        The number of pixels in the images' width.
 
     image_height : integer        
-    The number of pixels in the images' height.
-
+        The number of pixels in the images' height.
     """
     print('Loading Images...')
     image_array = np.ndarray(
@@ -79,7 +78,6 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
 
     image_height : integer        
         The number of pixels in the images' height.
-
 
     References
     ----------
