@@ -46,8 +46,9 @@ def ImportImages(ImageFilenames, image_width, image_height):
             if image_data.shape != (image_width, image_height, 3):
                 raise Exception('Unexpected image shape: %s' %
                                 str(image_data.shape))
-            image_array[image_num, :, :, :] = image_data[(
-                width_center - 16):(width_center + 14), (height_center - 16):(height_center + 14), :]
+            image_array[image_num, :, :, :] = image_data[
+                (width_center - 16):(width_center + 14), 
+                (height_center - 16):(height_center + 14), :]
             image_num = image_num + 1
         except IOError as e:
             print('Could not read:', image, ':', e, ' , skipping.')
@@ -104,9 +105,11 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
         num_channels = 3
         num_classes = 2
         image_size = 30
-        # Number of new "channels" from the 7x7 convolution. The first convolution will have depth.
+        # Number of new "channels" from the 7x7 convolution. 
+        # The first convolution will have the following depth.
         depth = 128
-        # The reduction of each 1x1 convolution before a large convolution in the inception module
+        # The reduction of each 1x1 convolution before 
+        # a large convolution in the inception module.
         reduce_depth = 32
         # The output depth of each convolution in the inception module.
         inception_output_depth = 64
@@ -284,7 +287,7 @@ def QuasarClassifier(ImageFilenames, image_width, image_height):
 
                 # Concatenate Convolutions with activation
                 concat_layer = tf.nn.relu(
-                    tf.concat([hiddenconv_3x3, hiddenconv_5x5, conv_5x5, hiddenconv_5x5], 3))
+                    tf.concat([hiddenconv_3x3, hiddenconv_5x5, hiddenconv_4_1x1, hiddenconv_3_1x1], 3))
 
                 with tf.name_scope('FullConn'):
                     # Flatten the convolutions to a 2D tensor for the fully connected layer.
